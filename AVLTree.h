@@ -5,8 +5,8 @@ typedef struct _node{
 }Node;
 
 void insertData(Node** root, int data);
-void deleteData(Node** root, int data);
-void reblanceTree(Node** root);
+void deleteData(Node* root, int data);
+Node* reblanceTree(Node* root);
 Node* getParentNode(Node* node, int data);
 int isRightNode(Node* node);
 int isLeftNode(Node* node);

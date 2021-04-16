@@ -32,6 +32,7 @@ void insertData(Node** root, int data){
 }
 
 Node* getParentNode(Node* node, int data){
+    //소스 코드를 더 잘 줄일 수 있을 것 같다.
     Node* tempParentNode = NULL;
 
     if(node->data < data){
@@ -58,10 +59,37 @@ int isRightNode(Node* node){
     return node->right != NULL;
 }
 
-void deleteData(Node** root, int data){}
+int isEmptyTree(Node* root){
+    return root != NULL;
+}
 
-int getDepth(Node** node){
+int getMinValueInBST(Node* root){
+    if(isLeftNode(root)){
+        return getMinValueInBST(root->left);
+    }else{
+        return root->data;
+    }
+}
 
+
+Node* searchNodeEqualData(Node* root, int target){
+    if(isEmptyTree(root)){
+        return NULL;
+    }
+    if(root-> data == target){
+        return root;
+    }else if(root->data > target){
+        return searchNodeEqualData(root->left, target);
+    }else{
+        return searchNodeEqualData(root->right, target);
+    }
+}
+
+// 이진 검색 트리 삭제 함수
+void deleteDataInBST(Node* root, int target){
+}
+
+void deleteData(Node* root, int data){
 }
 
 Node* getLeftSubTree(Node* root){
@@ -97,7 +125,7 @@ int getGapOfHeight(Node* root){
 Node* reblanceTree(Node* root){
     int gapOfHeight;
 
-    if(*root == NULL){
+    if(root == NULL){
         return;
     }
     //회전 유형은 어떻게 확인할까?
@@ -111,7 +139,6 @@ Node* reblanceTree(Node* root){
 
     if( gapOfHeight > 1){
         root = (( getGapOfHeight(getLeftSubTree(root)) > 0 )) ? rotateLL(root) : rotateLR(root);
-        return root;
     }else{
         root = (( getGapOfHeight(getRightSubTree(root)) < 0)) ? rotateRR(root) : rotateRL(root);
     }
@@ -128,12 +155,9 @@ void destroyTree(Node* root){
     }
     return;
 } 
-int getNodeDepth(Node* node);
-
 void showTree(Node* root){
 
 }
-
 
 int main(void){
     printf("hello world");
